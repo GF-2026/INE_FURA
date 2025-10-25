@@ -4,13 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FURA - Formulario (A4 doble página)</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
   <style>
-      body {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 20px;
-    line-height: 1.6;
-  }
     @page { size: A4; margin: 0; }
     html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; background: #ccc; }
 
@@ -33,11 +28,11 @@
     /* contenedores (posiciones ajustables) */
     .mnvm-container1, .mnvm-container2,
     .mvm-container1, .mvm-container2,
-    .names-container1, .names-container2,
-    .lastname1-container1, .lastname1-container2,
+    .nameComplete, .names-container2,
+    .AddressComplete, .lastname1-container2,
     .lastname2-container1, .lastname2-container2,
     .mail-container,
-    .date-container1, .date-container2 {
+    .date-container1, .since {
       display: flex;
       gap: 1.5px;
       position: absolute;
@@ -48,15 +43,15 @@
     .mnvm-container2 { top: 210px; left: 257px; }
     .mvm-container1 { top: 237px; left: 229.5px; }
     .mvm-container2 { top: 263px; left: 258px; }
-    .names-container1 { top: 297px; left: 229.5px; }
+    .nameComplete { top: 297px; left: 229.5px; }
     .names-container2 { top: 356px; left: 238px; }
-    .lastname1-container1 { top: 344px; left: 229.5px; }
+    .AddressComplete { top: 344px; left: 229.5px; }
     .lastname1-container2 { top: 409px; left: 238px; }
     .lastname2-container1 { top: 392px; left: 229.5px; }
     .lastname2-container2 { top: 461px; left: 239px; }
     .mail-container { top: 580px; left: 229.5px; }
     .date-container1 { top: 820px; left: 130px; }
-    .date-container2 { top: 736px; left: 137px; }
+    .since { top: 736px; left: 137px; }
      .tel-container { top: 485px; left: 230px; }
      .cel-container { top: 485px; left: 404px; }
     /* fecha (año/mes/día) y CURP (clave) */
@@ -88,39 +83,39 @@
       position: absolute;
     }
 
-    .year-container1 { top: 436px; left: 229.5px; }
-    .month-container1 { top: 436px; left: 309px; }
-    .day-container1 { top: 436px; left: 356px; }
-    .year-container2 { top: 512px; left: 242px; }
-    .month-container2 { top: 512px; left: 330px; }
-    .day-container2 { top: 512px; left: 383px; }
+    .year-container1 { top: 438px; left: 229.5px; }
+    .month-container1 { top: 438px; left: 309px; }
+    .day-container1 { top: 438px; left: 356px; }
+    .year-container2 { top: 514px; left: 242px; }
+    .month-container2 { top: 514px; left: 330px; }
+    .day-container2 { top: 514px; left: 383px; }
 
-    .clave-container1 { top: 530px; left: 231px; }
-    .clave-container2 { top: 564px; left: 242px; }
+    .clave-container1 { top: 532px; left: 231px; }
+    .clave-container2 { top: 566px; left: 242px; }
 
     /* tamaño inputs */
     .mnvm-container1 input, .mvm-container1 input,
     .mnvm-container2 input, .mvm-container2 input,
-    .names-container1 input, .names-container2 input,
-    .lastname1-container1 input, .lastname1-container2 input,
+    .nameComplete input, .names-container2 input,
+    .AddressComplete input, .lastname1-container2 input,
     .lastname2-container1 input, .lastname2-container2 input,
     .mail-container input {
-      width: 420px; height: 22px; text-align: center; font-size: 16px; border: 1px solid #888;
+      width: 420px; height: 19px; text-align: center; font-size: 16px; border: 1px solid #888;
     }
     .mnvm-container2 input, .mvm-container2 input { width: 396px; }
     .names-container2 input, .lastname1-container2 input, .lastname2-container2 input { width: 416px; }
 
     .tel-container input, .cel-container input,
     .clave-container1 input, .clave-container2 input {
-      width: 9.5px; height: 22px; text-align: center; font-size: 12px; border: 1px solid #888;
+      width: 9.5px; height: 20px; text-align: center; font-size: 12px; border: 1px solid #888;
     }
 
-    .year-container1 input, .year-container2 input { width: 9.5px; height: 22px; font-size: 12px; text-align:center; }
-    .month-container1 input, .month-container2 input { width: 9.5px; height: 22px; font-size: 12px; text-align:center; }
-    .day-container1 input, .day-container2 input { width: 10px; height: 22px; font-size: 12px; text-align:center; }
+    .year-container1 input, .year-container2 input { width: 9.5px; height: 19px; font-size: 12px; text-align:center; }
+    .month-container1 input, .month-container2 input { width: 9.5px; height: 19px; font-size: 12px; text-align:center; }
+    .day-container1 input, .day-container2 input { width: 10px; height: 19px; font-size: 12px; text-align:center; }
 
     /* quitar recuadro de la fecha (visual) */
-    .date-container1 input, .date-container2 input {
+    .date-container1 input, .since input {
       border: none !important; outline: none !important; background: transparent !important;
       text-align: center; font-size: 14px;
     }
@@ -167,12 +162,6 @@
       #btnPDF, #signatureModal { display:none !important; }
       .signature-box { background: transparent !important; }
     }
-    /* 🔠 Forzar visualmente mayúsculas en todos los inputs de texto */
-input[type="text"],
-input[type="email"],
-textarea {
-  text-transform: uppercase;
-}
   </style>
 </head>
 <body>
@@ -218,8 +207,8 @@ textarea {
       <!-- MNVM / MVM / nombres / apellidos / mail / fecha -->
       <div class="mnvm-container1"><input maxlength="80" type="text" placeholder="MOVIMIENTO NACIONAL VIVA MÉXICO"></div>
       <div class="mvm-container1"><input maxlength="40" type="text" placeholder="MOVIMIENTO VIVA MÉXICO"></div>
-      <div class="names-container1"><input maxlength="40" type="text" placeholder="Nombre(s)"></div>
-      <div class="lastname1-container1"><input maxlength="40" type="text" placeholder="Apellido Paterno"></div>
+      <div class="nameComplete"><input maxlength="40" type="text" placeholder="Nombre(s)"></div>
+      <div class="AddressComplete"><input maxlength="40" type="text" placeholder="Apellido Paterno"></div>
       <div class="lastname2-container1"><input maxlength="40" type="text" placeholder="Apellido Materno"></div>
       <div class="mail-container"><input maxlength="80" type="email" placeholder="USUARIO@GMAIL.COM"></div>
       <div class="date-container1"><input type="date"></div>
@@ -259,7 +248,7 @@ textarea {
       <div class="names-container2"><input maxlength="40" type="text"></div>
       <div class="lastname1-container2"><input maxlength="40" type="text"></div>
       <div class="lastname2-container2"><input maxlength="40" type="text"></div>
-      <div class="date-container2"><input type="date"></div>
+      <div class="since"><input type="date"></div>
 
       <div class="signature-box signature-box2" id="sigBox2" title="Hacer clic para firmar">
         <img id="firma2" alt="Firma 2">
@@ -480,14 +469,14 @@ textarea {
     // pequeño retardo para evitar race conditions al renderizar backgrounds
     setTimeout(() => {
       // sincronizaciones
-      syncFields('.names-container1', '.names-container2');
-      syncFields('.lastname1-container1', '.lastname1-container2');
+      syncFields('.nameComplete', '.names-container2');
+      syncFields('.AddressComplete', '.lastname1-container2');
       syncFields('.lastname2-container1', '.lastname2-container2');
       syncFields('.year-container1', '.year-container2');
       syncFields('.month-container1', '.month-container2');
       syncFields('.day-container1', '.day-container2');
       syncFields('.clave-container1', '.clave-container2');
-      syncFields('.date-container1', '.date-container2');
+      syncFields('.date-container1', '.since');
 
       // autosalto para clave (varios inputs, maxlength=1)
       setupAutoAdvance(document.querySelectorAll('.clave-container1 input'), 1);
